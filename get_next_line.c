@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char    *ft_read_fd(int fd, char *unfiltered_line, int *bytes_read)
+char	*ft_read_fd(int fd, char *unfiltered_line, int *bytes_read)
 {
 	char	*buffer;
 	char	*temp;
@@ -24,12 +24,12 @@ char    *ft_read_fd(int fd, char *unfiltered_line, int *bytes_read)
 	while (!ft_strchr(unfiltered_line, '\n') && *bytes_read != 0)
 	{
 		*bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (*bytes_read == -1)
+		if (*bytes_read == -1 || !buffer)
 		{
 			free(buffer);
 			free(unfiltered_line);
 			return (NULL);
-	 	}
+		}
 		buffer[*bytes_read] = '\0';
 		temp = unfiltered_line;
 		unfiltered_line = ft_strjoin(temp, buffer);
@@ -41,9 +41,9 @@ char    *ft_read_fd(int fd, char *unfiltered_line, int *bytes_read)
 
 char	*ft_filter_line(char *unfiltered_line)
 {
-	int	i;
-	char  *filtered_line;
-	
+	int		i;
+	char	*filtered_line;
+
 	i = 0;
 	if (!unfiltered_line[i])
 		return (NULL);
@@ -64,7 +64,7 @@ char	*ft_filter_line(char *unfiltered_line)
 		i++;
 	}
 	return (filtered_line);
-} 
+}
 
 char	*ft_rest_unfiltered(char *unfiltered_line)
 {
@@ -91,23 +91,23 @@ char	*ft_rest_unfiltered(char *unfiltered_line)
 	return (rest_line);
 }
 
-
 char	*get_next_line(int fd)
 {
-    char        *next_line;
-    static char *unfiltered_line;
-    int bytes_read;
-    
+	char		*next_line;
+	static char	*unfiltered_line;
+	int			bytes_read;
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);       
+		return (NULL);
 	unfiltered_line = ft_read_fd(fd, unfiltered_line, &bytes_read);
 	if (!unfiltered_line)
 		return (NULL);
 	next_line = ft_filter_line(unfiltered_line);
 	unfiltered_line = ft_rest_unfiltered(unfiltered_line);
-    if (next_line == NULL && bytes_read == 0)
-    {
-        free (unfiltered_line);
-        return (NULL);
-    }
+	if (next_line == NULL && bytes_read == 0)
+	{
+		free (unfiltered_line);
+		return (NULL);
+	}
 	return (next_line);
+}
