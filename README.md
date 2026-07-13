@@ -38,12 +38,11 @@ To clean object files:
 ### Execution Example
 To use the function in your code, include the header file and call it inside a loop:
 
+```
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 
-
-```
 int main(void)
 {
     int     fd;
