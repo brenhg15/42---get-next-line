@@ -29,6 +29,30 @@ The implementation utilizes a buffer-driven approach paired with a persistent st
 The code must be compiled with the `-Wall -Wextra -Werror` flags alongside a specific macro flag defining the `BUFFER_SIZE`
 
 Note: If no explicit -D BUFFER_SIZE is declared during compilation, the header safely falls back to a default value of 42.
+To clean object files:
+
+To compile:
+
+```bash
+make 
+```
+To remove all buidl artifacts:
+
+```bash
+make clean
+```
+
+To remove all build artifacts including the executable:
+
+```bash
+make fclean
+```
+
+To recompile from scratch:
+
+```bash
+make re
+```
 
 ## Resources
 ### Documentation & References
