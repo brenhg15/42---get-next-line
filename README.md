@@ -42,6 +42,8 @@ To use the function in your code, include the header file and call it inside a l
 #include <fcntl.h>
 #include <stdio.h>
 
+
+```
 int main(void)
 {
     int     fd;
@@ -56,6 +58,7 @@ int main(void)
     close(fd);
     return (0);
 }
+```
 
 ## Resources
 ### Documentation & References
