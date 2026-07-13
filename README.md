@@ -28,31 +28,34 @@ The implementation utilizes a buffer-driven approach paired with a persistent st
 ### Compilation
 The code must be compiled with the `-Wall -Wextra -Werror` flags alongside a specific macro flag defining the `BUFFER_SIZE`
 
+```bash
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+```
+
 Note: If no explicit -D BUFFER_SIZE is declared during compilation, the header safely falls back to a default value of 42.
 To clean object files:
 
-To compile:
+### Execution Example
+To use the function in your code, include the header file and call it inside a loop:
 
-```bash
-make 
-```
-To remove all buidl artifacts:
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-```bash
-make clean
-```
+int main(void)
+{
+    int     fd;
+    char    *line;
 
-To remove all build artifacts including the executable:
-
-```bash
-make fclean
-```
-
-To recompile from scratch:
-
-```bash
-make re
-```
+    fd = open("test.txt", O_RDONLY);
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        printf("%s", line);
+        free(line);
+    }
+    close(fd);
+    return (0);
+}
 
 ## Resources
 ### Documentation & References
