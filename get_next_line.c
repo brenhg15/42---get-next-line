@@ -22,7 +22,7 @@ char	*ft_read_fd(int fd, char *unfiltered_line)
 		unfiltered_line = ft_calloc(1, sizeof(char));
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	bytes_read = 1;
-	while (!ft_strchr(unfiltered_line, '\n') && bytes_read != 0)
+	while (bytes_read != 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1 || !buffer)
@@ -35,9 +35,10 @@ char	*ft_read_fd(int fd, char *unfiltered_line)
 		temp = unfiltered_line;
 		unfiltered_line = ft_strjoin(temp, buffer);
 		free(temp);
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	free(buffer);
-	return (unfiltered_line);
+	return (free(buffer), unfiltered_line);
 }
 
 char	*ft_filter_line(char *unfiltered_line)
