@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 
 	c2 = (char) c;
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		if (s[i] == c2)
 			return ((char *) &s[i]);
