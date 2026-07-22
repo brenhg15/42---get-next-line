@@ -1,11 +1,13 @@
-*This project has been created as part of the 42 curriculum by bhernand*
+*This project has been created as part of the 42 curriculum by bhernand.*
 
 ---
 
 ## Description
 The goal of this project is to write a function in C that reads from a given file descriptor and returns one line at a time. A "line" is defined as a sequence of characters ending with a newline character (`\n`) or the End-Of-File. 
 
-Repeated calls to `get_next_line()` allow an application to read an entire text stream sequentially without loading the whole file into heap memory at once[cite: 1]. This project serves as a practical introduction to the manipulation of static variables, buffer management, and strict dynamic memory allocation boundaries in C.
+Repeated calls to `get_next_line()` allow an application to read an entire text stream sequentially without loading the whole file into heap memory at once. 
+
+This project serves as a practical introduction to the manipulation of static variables, buffer management, and strict dynamic memory allocation boundaries in C.
 
 ---
 
@@ -29,7 +31,7 @@ The implementation utilizes a buffer-driven approach paired with a persistent st
 The code must be compiled with the `-Wall -Wextra -Werror` flags alongside a specific macro flag defining the `BUFFER_SIZE`
 
 ```bash
-cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c ...
 ```
 
 Note: If no explicit -D BUFFER_SIZE is declared during compilation, the header safely falls back to a default value of 42.
@@ -66,7 +68,11 @@ int main(void)
 
 * C Concepts: ISO/IEC 9899 standard literature regarding static storage duration, storage layout, and lifetime behaviors of local static pointers.
 
+* Peers 42 Berlin
+
+* Github Repositories
+
 ### AI Usage Statement
 * Code Implementation: AI was not utilized to generate architectural strategies or direct code solutions. First-principles reasoning and peer-to-peer debugging exchanges were leveraged to map out the pointer mutation states.
 
-* Troubleshooting & Optimization: AI was strictly used as an automated static code analyzer to locate subtle memory leak vectors highlighted by strict unit testers (such as gnlTester), specifically pointing out dangling pointer tracking when handling late invalid file descriptors or mid-stream read failures.
+* Troubleshooting,  Optimization & README Writing: AI was strictly used as an automated static code analyzer to locate subtle memory leak vectors highlighted by strict unit testers (such as gnlTester), specifically pointing out dangling pointer tracking when handling late invalid file descriptors or mid-stream read failures, additional to rewrite the README part.
